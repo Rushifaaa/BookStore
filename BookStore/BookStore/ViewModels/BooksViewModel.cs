@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace BookStore.ViewModels
 {
-    class BooksViewModel: BindableObject
+    public class BooksViewModel: BindableObject
     {
         public ObservableCollection<Book> Books { get; set; }
 
@@ -21,7 +21,18 @@ namespace BookStore.ViewModels
 
         public async void LoadBooks()
         {
-            Books = await API.shared.GetBooks();
+            var books = await API.shared.GetBooks();
+            Books.Clear();
+            foreach (Book book in books)
+            {
+                Books.Add(book);
+            }
+            OnPropertyChanged(nameof(Books));
+        }
+
+        public void ToolbarItem_Clicked()
+        {
+
         }
     }
 

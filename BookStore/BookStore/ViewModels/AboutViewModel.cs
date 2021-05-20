@@ -8,10 +8,11 @@ namespace BookStore.ViewModels
     public class AboutViewModel
     {
         public ICommand OpenWebCommand { get; }
-
         public AboutViewModel()
         {
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
         }
+
+       
     }
 }
