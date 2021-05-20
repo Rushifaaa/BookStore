@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookStore.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,12 @@ namespace BookStore.Views
         public BooksPage()
         {
             InitializeComponent();
+            BindingContext = new BooksViewModel();
+        }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

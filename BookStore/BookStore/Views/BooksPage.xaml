@@ -1,12 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BookStore.Views.BooksPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="BookStore.Views.BooksPage"
+             xmlns:viewmodels="clr-namespace:BookStore.ViewModels"
+             xmlns:model="clr-namespace:BookStore.Models"
+             x:DataType="viewmodels:BooksViewModel">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" />
+    </ContentPage.ToolbarItems>
+    
+    <ListView
+        IsGroupingEnabled="False"
+        IsRefreshing="False"
+        ItemsSource="{Binding Books}"
+        >
+        
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:Book">
+                <ViewCell>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding Title}" />
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding Author}" />
+                            <Label Text="-" />
+                            <Label Text="{Binding PublicationYear}" />
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>
