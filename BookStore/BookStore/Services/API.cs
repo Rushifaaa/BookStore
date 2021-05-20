@@ -17,8 +17,12 @@ namespace BookStore.Services
 
         private API()
         {
-            APIClient = new HttpClient();
-            APIClient.BaseAddress = new Uri("localhost:5000/api/");
+            var httpClientHandler = new HttpClientHandler();
+
+            httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+
+            APIClient = new HttpClient(httpClientHandler);
+            APIClient.BaseAddress = new Uri("http://10.3.35.108:5000/api/");
         }
 
         public async Task<ObservableCollection<Book>> GetBooks()
