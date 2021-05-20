@@ -4,6 +4,8 @@ using System.Text;
 
 namespace BookStore.Models
 {
+
+    [Serializable]
     public class Book
     {
         public int Id { get; set; }
