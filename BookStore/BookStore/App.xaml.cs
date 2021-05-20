@@ -1,5 +1,4 @@
-﻿using BookStore.Services;
-using BookStore.Views;
+﻿using BookStore.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,8 +11,6 @@ namespace BookStore
         public App()
         {
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 

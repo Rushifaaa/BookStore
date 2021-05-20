@@ -5,14 +5,13 @@ using Xamarin.Forms;
 
 namespace BookStore.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class AboutViewModel
     {
+        public ICommand OpenWebCommand { get; }
+
         public AboutViewModel()
         {
-            Title = "About";
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
         }
-
-        public ICommand OpenWebCommand { get; }
     }
 }
