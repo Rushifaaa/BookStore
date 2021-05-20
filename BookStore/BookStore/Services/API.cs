@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,13 +18,13 @@ namespace BookStore.Services
         private API()
         {
             APIClient = new HttpClient();
-            APIClient.BaseAddress = new Uri("localhost:5000");
+            APIClient.BaseAddress = new Uri("localhost:5000/api/");
         }
 
-        public async Task<IEnumerable<Book>> GetBooks()
+        public async Task<ObservableCollection<Book>> GetBooks()
         {
-            HttpResponseMessage booksResponse = await APIClient.GetAsync("/api/books");
-            return JsonConvert.DeserializeObject<IEnumerable<Book>>(await booksResponse.Content.ReadAsStringAsync());
+            HttpResponseMessage booksResponse = await APIClient.GetAsync("books");
+            return JsonConvert.DeserializeObject<ObservableCollection<Book>>(await booksResponse.Content.ReadAsStringAsync());
         }
     }
 }
