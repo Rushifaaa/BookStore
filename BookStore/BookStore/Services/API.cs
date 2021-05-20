@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,12 +24,24 @@ namespace BookStore.Services
 
             APIClient = new HttpClient(httpClientHandler);
             APIClient.BaseAddress = new Uri("http://10.3.35.108:5000/api/");
+            APIClient.DefaultRequestHeaders.Clear();
+            APIClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public async Task<ObservableCollection<Book>> GetBooks()
         {
             HttpResponseMessage booksResponse = await APIClient.GetAsync("books");
             return JsonConvert.DeserializeObject<ObservableCollection<Book>>(await booksResponse.Content.ReadAsStringAsync());
+        }
+
+        public async Task AddBook(Book book)
+        {
+            await APIClient.PostAsJsonAsync("books", book);
+        }
+
+        public async Task DeleteBook(Book book)
+        {
+            await APIClient.DeleteAsync("books/" + book.Id);
         }
     }
 }
