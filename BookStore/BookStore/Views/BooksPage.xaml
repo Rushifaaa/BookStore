@@ -7,13 +7,15 @@
              x:DataType="viewmodels:BooksViewModel">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" />
+        <ToolbarItem Text="Add" Command="{Binding AddBookCommand}" />
     </ContentPage.ToolbarItems>
     
     <ListView
         IsGroupingEnabled="False"
-        IsRefreshing="False"
+        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+        RefreshCommand="{Binding RefreshCommand}"
         ItemsSource="{Binding Books}"
+        CachingStrategy="RecycleElement"
         >
         
         <ListView.ItemTemplate>
