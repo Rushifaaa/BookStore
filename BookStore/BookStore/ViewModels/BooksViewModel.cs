@@ -1,5 +1,6 @@
 ﻿using BookStore.Models;
 using BookStore.Services;
+using BookStore.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,9 +24,8 @@ namespace BookStore.ViewModels
 
         public BooksViewModel()
         {
-            IsBusy = false;
             Books = new ObservableCollection<Book>();
-            LoadBooks();
+            _ = LoadBooks();
 
             RefreshCommand = new Command(Refresh);
 
@@ -33,28 +33,27 @@ namespace BookStore.ViewModels
 
         public async Task LoadBooks()
         {
-            IsBusy = true;
-            OnPropertyChanged(nameof(IsBusy));
+            
+            
             var books = await API.shared.GetBooks();
-            Books.Clear();
+            
             foreach (Book book in books)
             {
                 Books.Add(book);
             }
-            IsBusy = false;
+            
             OnPropertyChanged(nameof(Books));
-            OnPropertyChanged(nameof(IsBusy));
             
         }
 
         public async void Refresh()
         {
+            IsBusy = true;
+            OnPropertyChanged(nameof(IsBusy));
+            Books.Clear();
             await LoadBooks();
-        }
-
-        public async void AddBook()
-        {
-
+            IsBusy = false;
+            OnPropertyChanged(nameof(IsBusy));
         }
 
         public async void DeleteBook()

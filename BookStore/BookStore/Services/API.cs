@@ -1,11 +1,9 @@
 ﻿using BookStore.Models;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BookStore.Services
@@ -27,7 +25,7 @@ namespace BookStore.Services
             APIClient.DefaultRequestHeaders.Clear();
             APIClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
-
+        
         public async Task<ObservableCollection<Book>> GetBooks()
         {
             HttpResponseMessage booksResponse = await APIClient.GetAsync("books");

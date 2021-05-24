@@ -13,6 +13,6 @@ namespace BookStore.Models
         public string Author { get; set; }
         public int PublicationYear { get; set; }
         public bool IsAvailable { get; set; }
-        public string ISBN { get; set; }
+        public string IsbnNumber { get; set; }
     }
 }

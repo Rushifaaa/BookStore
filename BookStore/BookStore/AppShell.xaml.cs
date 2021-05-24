@@ -12,6 +12,7 @@ namespace BookStore
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(BooksPage), typeof(BooksPage));
+            Routing.RegisterRoute(nameof(AddBookPage), typeof(AddBookPage));
         }
 
     }

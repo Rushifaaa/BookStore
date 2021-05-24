@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:BookStore.ViewModels"
+             x:DataType="viewmodels:AddBookViewModel"
+             x:Class="BookStore.Views.AddBookPage"
+             x:Name="AddBookPagex">
+
+    <StackLayout Padding="20">
+        <Editor Text="{Binding NewBook.Title}" Placeholder="Title"/>
+        <Editor Text="{Binding NewBook.Author}" Placeholder="Author"/>
+        <Editor Text="{Binding NewBook.PublicationYear}" Placeholder="Publication Year" Keyboard="Numeric"/>
+        <Editor Text="{Binding NewBook.IsbnNumber}" Placeholder="ISBN"/>
+        
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+            <CheckBox IsChecked="{Binding NewBook.IsAvailable}" />
+            <Label Text="Is Available" />
+        </StackLayout>
+
+        <Button Text="Add"
+                Command="{Binding Source={x:Reference AddBookPagex}, Path=BindingContext.AddCommand}" />
+    </StackLayout>
+        
+</ContentPage>

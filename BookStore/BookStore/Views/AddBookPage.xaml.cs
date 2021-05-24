@@ -11,17 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace BookStore.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BooksPage : ContentPage
+    public partial class AddBookPage : ContentPage
     {
-        public BooksPage()
+        public AddBookPage()
         {
             InitializeComponent();
-            BindingContext = new BooksViewModel();
-        }
-
-        private async void ToolbarItem_Clicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync(nameof(AddBookPage));
+            BindingContext = new AddBookViewModel();
         }
     }
 }

@@ -7,30 +7,36 @@
              x:DataType="viewmodels:BooksViewModel">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddBookCommand}" />
+        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
-    
-    <ListView
+
+    <RelativeLayout>
+        <ListView
         IsGroupingEnabled="False"
         IsRefreshing="{Binding IsBusy, Mode=OneWay}"
         RefreshCommand="{Binding RefreshCommand}"
         ItemsSource="{Binding Books}"
         CachingStrategy="RecycleElement"
+        IsPullToRefreshEnabled="True"
         >
-        
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="model:Book">
-                <ViewCell>
-                    <StackLayout Orientation="Vertical">
-                        <Label Text="{Binding Title}" />
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
-                            <Label Text="{Binding Author}" />
-                            <Label Text="-" />
-                            <Label Text="{Binding PublicationYear}" />
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Book">
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding Title}" />
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                <Label Text="{Binding Author}" />
+                                <Label Text="-" />
+                                <Label Text="{Binding PublicationYear}" />
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </RelativeLayout>
+    
+    
+    
 </ContentPage>
